@@ -1,9 +1,13 @@
-import { Category } from "../../entity/Category.entity";
-import { ICategoryRepository } from "../../repository/category/ICategory.repository";
+import { inject, injectable } from "tsyringe";
 
+import { Category } from "~@Entity/Category.entity";
+import { ICategoryRepository } from "~@Repository/category/ICategory.repository";
+
+@injectable()
 export class ListCategoryService {
 
 	constructor(
+		@inject("CategoryRepository")
 		private readonly categoryRepository: ICategoryRepository
 	) {
 	}

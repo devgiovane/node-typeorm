@@ -14,12 +14,12 @@ export class Database {
 			password: "58516ccd",
 			database: "rentx",
 			synchronize: true,
-			logging: false,
+			logging: true,
 			entities: [
-				"./src/entity/**/*.ts"
+				"src/entity/**/*.entity.ts"
 			],
 			migrations: [
-				"./src/migration/**/*.ts"
+				"src/migration/**/*.migrate.ts"
 			],
 		});
 	}

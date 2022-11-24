@@ -1,8 +1,10 @@
-import { DataSource, Repository } from "typeorm";
+import { singleton } from "tsyringe";
+import { DataSource, Repository} from "typeorm";
 
-import { Category } from "../../entity/Category.entity";
+import { Category } from "~@Entity/Category.entity";
 import { ICategoryRepository, ICreateCategoryDTO } from "./ICategory.repository";
 
+@singleton()
 export class CategoryRepository implements ICategoryRepository {
 
 	private readonly repository: Repository<Category>;
@@ -10,7 +12,7 @@ export class CategoryRepository implements ICategoryRepository {
 	constructor(
 		private readonly dataSource: DataSource
 	) {
-		this.repository = dataSource.getRepository(Category);
+		this.repository = this.dataSource.getRepository(Category);
 	}
 
 	public async save({ name, description }: ICreateCategoryDTO): Promise<void> {

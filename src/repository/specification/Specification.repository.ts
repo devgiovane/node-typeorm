@@ -1,22 +1,33 @@
-import { Specification } from "../../entity/Specification.entity";
+import { singleton } from "tsyringe";
+
+import { DataSource, Repository } from "typeorm";
+import { Specification } from "~@Entity/Specification.entity";
 import { ICreateSpecificationDTO, ISpecificationRepository } from "./ISpecification.repository";
 
+@singleton()
 export class SpecificationRepository implements ISpecificationRepository {
 
-	private readonly specifications: Array<Specification>;
+	private readonly repository: Repository<Specification>;
 
-	public save({name, description}: ICreateSpecificationDTO): void {
-		const specification = new Specification();
-		Object.assign(specification, {
-			name,
-			description,
-			created_at: new Date()
-		});
-		this.specifications.push(specification);
+	constructor(
+		private readonly dataSource: DataSource
+	) {
+		this.repository = this.dataSource.getRepository(Specification);
 	}
 
-	public findByName(name: string): Specification {
-		return this.specifications.find(specification => specification.name === name);
+	public async save({ name, description }: ICreateSpecificationDTO): Promise<void> {
+		const specification = new Specification();
+		specification.name = name;
+		specification.description = description;
+		await this.repository.save(specification)
+	}
+
+	public async findAll(): Promise<Array<Specification>> {
+		return await this.repository.find();
+	}
+
+	public async findByName(name: string): Promise<Specification> {
+		return await this.repository.findOneBy({ name });
 	}
 
 }

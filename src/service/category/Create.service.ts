@@ -1,13 +1,17 @@
-import { ICategoryRepository } from "../../repository/category/ICategory.repository";
+import { injectable, inject } from "tsyringe";
+
+import { ICategoryRepository } from "~@Repository/category/ICategory.repository";
 
 interface IRequest {
 	name: string,
 	description: string
 }
 
+@injectable()
 export class CreateCategoryService {
 
 	constructor(
+		@inject("CategoryRepository")
 		private readonly categoryRepository: ICategoryRepository
 	) {
 	}
