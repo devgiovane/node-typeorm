@@ -1,0 +1,34 @@
+version: '3'
+services:
+  application:
+    build: .
+    image: node:debug
+    container_name: application
+    ports:
+      - 3333:3333
+    volumes:
+      - .:/usr/app
+    depends_on:
+      - database
+    networks:
+      - database
+  database:
+    image: postgres:latest
+    container_name: database
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: docker
+      POSTGRES_PASSWORD: 58516ccd
+      POSTGRES_DB: rentx
+    volumes:
+      - database:/data/postgres
+    networks:
+      - database
+networks:
+  database:
+    driver: bridge
+volumes:
+  database:
+    driver: local
