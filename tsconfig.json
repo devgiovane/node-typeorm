@@ -28,10 +28,13 @@
 		"baseUrl": "./",
 		"paths": {
 			"~@Controller/*": [ "./src/controller/*" ],
+			"~@Database/*": [ "./src/database/*" ],
 			"~@Entity/*": [ "./src/entity/*" ],
+			"~@Migration/*": [ "./src/migration/*" ],
 			"~@Repository/*": [ "./src/repository/*" ],
 			"~@Routes/*": [ "./src/routes/*" ],
-			"~@Service/*": [ "./src/service/*" ]
+			"~@Service/*": [ "./src/service/*" ],
+			"~@Shared/*": [ "./src/shared/*" ]
 		},
 		// "rootDirs": [],                                   /* Allow multiple folders to be treated as one when resolving modules. */
 		// "typeRoots": [],                                  /* Specify multiple folders that act like './node_modules/@types'. */

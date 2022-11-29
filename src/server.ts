@@ -3,12 +3,10 @@ import "reflect-metadata";
 import morgan from 'morgan';
 import express, { Request, Response } from 'express';
 
-import { categoryRoutes } from '~@Routes/category.routes';
-import { specificationRoutes } from "~@Routes/specification.route";
+import "~@Shared/index";
 
-import "./shared";
-
-import { Database } from './database';
+import { Database } from '~@Database/index';
+import { apiRoutes } from "~@Routes/api.route";
 
 const database = Database.getInstance();
 database.init();
@@ -21,9 +19,12 @@ app.get('/', (_: Request, response: Response) => {
 	return response.json({ message: 'Hello world!' });
 });
 
-app.use('/category', categoryRoutes);
-app.use('/specifications', specificationRoutes);
+app.get('/health', (_: Request, response: Response) => {
+	return response.json({ message: 'OK!' });
+});
+
+app.use('/api/v1', apiRoutes);
 
 app.listen(3333, () => {
-	console.log('[server] listening on http://localhost:3333')
+	console.log('[server] listening on http://localhost:3333');
 });
