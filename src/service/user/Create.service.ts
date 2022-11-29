@@ -1,3 +1,4 @@
+import { hash } from "bcrypt";
 import { inject, injectable } from "tsyringe";
 
 import { UserRepository } from "~@Repository/user/User.repository";
@@ -20,6 +21,11 @@ export class CreateUserService {
 	}
 
 	public async execute(data: IRequest): Promise<void> {
+		const userExists = await this.userRepository.findByEmail(data.email);
+		if (userExists) {
+			throw new Error('user already exists');
+		}
+		data.password = await hash(data.password, 8);
 		await this.userRepository.save(data);
 	}
 

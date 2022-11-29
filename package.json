@@ -8,7 +8,9 @@
 		"typeorm": "yarn typeorm-ts-node-esm"
 	},
 	"dependencies": {
+		"bcrypt": "^5.1.0",
 		"express": "^4.18.2",
+		"jsonwebtoken": "^8.5.1",
 		"pg": "^8.8.0",
 		"reflect-metadata": "^0.1.13",
 		"tsyringe": "^4.7.0",
@@ -16,7 +18,9 @@
 		"uuid": "^9.0.0"
 	},
 	"devDependencies": {
+		"@types/bcrypt": "^5.0.0",
 		"@types/express": "^4.17.14",
+		"@types/jsonwebtoken": "^8.5.9",
 		"@types/morgan": "^1.9.3",
 		"@types/node": "^18.11.9",
 		"@types/uuid": "^8.3.4",

@@ -8,6 +8,7 @@ services:
       - 3333:3333
     volumes:
       - .:/usr/app
+      - /usr/app/node_modules
     depends_on:
       - database
     networks:

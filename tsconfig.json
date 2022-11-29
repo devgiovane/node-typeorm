@@ -30,6 +30,7 @@
 			"~@Controller/*": [ "./src/controller/*" ],
 			"~@Database/*": [ "./src/database/*" ],
 			"~@Entity/*": [ "./src/entity/*" ],
+			"~@Middleware/*": [ "./src/middleware/*" ],
 			"~@Migration/*": [ "./src/migration/*" ],
 			"~@Repository/*": [ "./src/repository/*" ],
 			"~@Routes/*": [ "./src/routes/*" ],
