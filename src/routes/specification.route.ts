@@ -2,7 +2,7 @@ import { Request, Response, Router } from "express";
 
 import { auth } from "~@Middleware/auth.middleware";
 import { ListSpecificationController } from "~@Controller/specification/List.controller";
-import {CreateSpecificationController} from "~@Controller/specification/Create.controller";
+import { CreateSpecificationController } from "~@Controller/specification/Create.controller";
 
 export const specificationRoutes = Router();
 specificationRoutes.use(auth);

@@ -1,6 +1,8 @@
 import { container } from "tsyringe";
 import { Request, Response } from "express";
 
+import { AppError } from "~@Error/App.error";
+import { StatusError } from "~@Error/Status.error";
 import { CreateCategoryService } from "~@Service/category/Create.service";
 
 export class CreateCategoryController {
@@ -10,9 +12,12 @@ export class CreateCategoryController {
 		try {
 			const createCategoryService = container.resolve(CreateCategoryService);
 			await createCategoryService.execute({ name, description });
-			return response.status(201).send();
+			return response.status(StatusError.CREATED).send();
 		} catch (error) {
-			return response.status(409).json({ error: error.message });
+			if (error instanceof AppError) {
+				return response.status(error.statusCode).json({ error: error.message });
+			}
+			return response.status(StatusError.INTERNAL_ERROR).send({ error: error.message });
 		}
 	}
 

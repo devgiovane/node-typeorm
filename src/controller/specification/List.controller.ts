@@ -1,6 +1,8 @@
 import { container } from "tsyringe";
 import { Request, Response } from "express";
 
+import { AppError } from "~@Error/App.error";
+import { StatusError } from "~@Error/Status.error";
 import { ListSpecificationService } from "~@Service/specification/List.service";
 
 export class ListSpecificationController {
@@ -11,7 +13,10 @@ export class ListSpecificationController {
 			const specifications = await listSpecificationService.execute();
 			return response.json(specifications);
 		} catch (error) {
-			return response.status(404).send({ error: error.message });
+			if (error instanceof AppError) {
+				return response.status(error.statusCode).send({ error: error.message });
+			}
+			return response.status(StatusError.INTERNAL_ERROR).send({ error: error.message });
 		}
 	}
 

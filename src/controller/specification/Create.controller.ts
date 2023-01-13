@@ -1,6 +1,8 @@
 import { container } from "tsyringe";
 import { Request, Response } from "express";
 
+import { AppError } from "~@Error/App.error";
+import { StatusError } from "~@Error/Status.error";
 import { CreateSpecificationService } from "~@Service/specification/Create.service";
 
 export class CreateSpecificationController {
@@ -10,9 +12,12 @@ export class CreateSpecificationController {
 		try {
 			const createSpecificationService = container.resolve(CreateSpecificationService);
 			await createSpecificationService.execute({ name, description });
-			return response.status(201).send();
+			return response.status(StatusError.CREATED).send();
 		} catch (error) {
-			return response.status(409).json({error: error.message});
+			if (error instanceof AppError) {
+				return response.status(error.statusCode).json({error: error.message});
+			}
+			return response.status(StatusError.INTERNAL_ERROR).send({ error: error.message });
 		}
 	}
 

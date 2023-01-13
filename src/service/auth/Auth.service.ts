@@ -2,6 +2,8 @@ import { sign } from "jsonwebtoken";
 import { compare } from "bcrypt";
 import { inject, injectable } from "tsyringe";
 
+import { AppError } from "~@Error/App.error";
+import { StatusError } from "~@Error/Status.error";
 import { IUserRepository } from "~@Repository/user/IUser.repository";
 
 interface IRequest {
@@ -21,11 +23,11 @@ export class AuthService {
 	public async execute({email, password}: IRequest) {
 		const user = await this.userRepository.findByEmail(email);
 		if (!user) {
-			throw new Error('email or password incorrect');
+			throw new AppError('email or password incorrect', StatusError.UNAUTHORIZED);
 		}
 		const passwordValid = compare(password, user.password);
 		if (!passwordValid) {
-			throw new Error('email or password incorrect');
+			throw new AppError('email or password incorrect', StatusError.UNAUTHORIZED);
 		}
 		return sign({}, "e3bce3fa76da81e068ac242d2acac391", {
 			subject: user.id,
