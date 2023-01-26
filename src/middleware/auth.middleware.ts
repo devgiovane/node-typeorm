@@ -3,7 +3,7 @@ import { NextFunction, Request, Response } from "express";
 
 import { Database } from "~@Database/index";
 import { StatusError } from "~@Error/Status.error";
-import { UserRepository } from "~@Repository/user/User.repository";
+import { UserRepository } from "~@Repository/user/typeorm/User.repository";
 
 interface IPayload {
 	sub: string;

@@ -3,7 +3,7 @@ import { inject, injectable } from "tsyringe";
 
 import { AppError } from "~@Error/App.error";
 import { StatusError } from "~@Error/Status.error";
-import { UserRepository } from "~@Repository/user/User.repository";
+import { UserRepository } from "~@Repository/user/typeorm/User.repository";
 import { IUserRepository } from "~@Repository/user/IUser.repository";
 
 interface IRequest {

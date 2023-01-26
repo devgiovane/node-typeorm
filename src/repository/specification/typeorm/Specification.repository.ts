@@ -2,7 +2,7 @@ import { singleton } from "tsyringe";
 import { DataSource, Repository } from "typeorm";
 
 import { Specification } from "~@Entity/Specification.entity";
-import { ICreateSpecificationDTO, ISpecificationRepository } from "./ISpecification.repository";
+import { ICreateSpecificationDTO, ISpecificationRepository } from "../ISpecification.repository";
 
 @singleton()
 export class SpecificationRepository implements ISpecificationRepository {

@@ -33,4 +33,5 @@ export class User {
 		}
 		this.created_at = new Date();
 	}
+
 }

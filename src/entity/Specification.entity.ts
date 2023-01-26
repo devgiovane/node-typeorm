@@ -21,4 +21,5 @@ export class Specification {
 		}
 		this.created_at = new Date();
 	}
+
 }

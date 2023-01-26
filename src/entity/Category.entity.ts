@@ -21,4 +21,5 @@ export class Category {
 		}
 		this.created_at = new Date();
 	}
+
 }
