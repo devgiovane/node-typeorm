@@ -25,7 +25,7 @@ export class AuthService {
 		if (!user) {
 			throw new AppError('email or password incorrect', StatusError.UNAUTHORIZED);
 		}
-		const passwordValid = compare(password, user.password);
+		const passwordValid = await compare(password, user.password);
 		if (!passwordValid) {
 			throw new AppError('email or password incorrect', StatusError.UNAUTHORIZED);
 		}
