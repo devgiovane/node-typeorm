@@ -7,6 +7,7 @@ export interface ICreateSpecificationDTO {
 
 export interface ISpecificationRepository {
 	findByName(name: string): Promise<Specification>;
+	findByIds(ids: Array<string>): Promise<Array<Specification>>;
 	findAll(): Promise<Array<Specification>>;
 	save({ name, description }: ICreateSpecificationDTO): Promise<void>;
 }

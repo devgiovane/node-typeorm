@@ -1,5 +1,5 @@
 import { singleton } from "tsyringe";
-import { DataSource, Repository } from "typeorm";
+import { DataSource, Repository, In } from "typeorm";
 
 import { Specification } from "~@Entity/Specification.entity";
 import { ICreateSpecificationDTO, ISpecificationRepository } from "../ISpecification.repository";
@@ -24,6 +24,10 @@ export class SpecificationRepository implements ISpecificationRepository {
 
 	public async findAll(): Promise<Array<Specification>> {
 		return await this.repository.find();
+	}
+
+	public async findByIds(ids: Array<string>): Promise<Array<Specification>> {
+		return await this.repository.findBy({ id: In(ids) });
 	}
 
 	public async findByName(name: string): Promise<Specification> {

@@ -1,4 +1,5 @@
 import "reflect-metadata";
+import * as dotenv from 'dotenv';
 
 import { AppError } from "~@Error/App.error";
 import { AuthService } from "~@Service/auth/Auth.service";
@@ -12,7 +13,8 @@ let userMemoryRepository: UserMemoryRepository;
 
 describe('Authenticate', function () {
 
-	beforeAll(function () {
+	beforeEach(function () {
+		dotenv.config();
 		userMemoryRepository = new UserMemoryRepository();
 		authService = new AuthService(userMemoryRepository);
 		createUserService = new CreateUserService(userMemoryRepository);

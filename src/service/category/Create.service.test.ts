@@ -9,7 +9,7 @@ let categoryMemoryRepository: CategoryMemoryRepository;
 
 describe('Create category service', function () {
 
-	beforeAll(function () {
+	beforeEach(function () {
 		categoryMemoryRepository = new CategoryMemoryRepository();
 		createCategoryService = new CreateCategoryService(categoryMemoryRepository);
 	});

@@ -1,6 +1,7 @@
 import "reflect-metadata";
 
 import morgan from 'morgan';
+import * as dotenv from 'dotenv';
 import express, { Request, Response } from 'express';
 
 import "~@Shared/index";
@@ -8,6 +9,8 @@ import "~@Shared/index";
 import { Database } from '~@Database/index';
 import { apiRoutes } from "~@Routes/api.route";
 import { authRoutes } from "~@Routes/auth.route";
+
+dotenv.config();
 
 const database = Database.getInstance();
 database.init();
@@ -26,6 +29,7 @@ app.get('/health', (_: Request, response: Response) => {
 app.use('/api/v1', apiRoutes);
 app.use('/auth/v1', authRoutes);
 
-app.listen(3333, () => {
-	console.log('[server] listening on http://localhost:3333');
+app.set('port', process.env.PORT || 3333);
+app.listen(app.get('port'), () => {
+	console.log(`[server] listening on http://localhost:${app.get('port')}`);
 });

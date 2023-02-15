@@ -19,13 +19,14 @@ export async function auth(request: Request, response: Response, next: NextFunct
 		return response.status(StatusError.UNAUTHORIZED).send({ error: 'token type invalid' });
 	}
 	try {
-		const { sub } = verify(token, "e3bce3fa76da81e068ac242d2acac391") as IPayload;
+		const { sub } = verify(token, process.env.TOKEN_SALT) as IPayload;
 		const database  = Database.getInstance();
 		const userRepository = new UserRepository(database.getDataSource());
-		const user = userRepository.findById(sub);
+		const user = await userRepository.findById(sub);
 		if (!user) {
 			return response.status(StatusError.UNAUTHORIZED).send({ error: 'user not found' });
 		}
+		request.user = user;
 		return next();
 	} catch (error) {
 		return response.status(StatusError.UNAUTHORIZED).send({ error: 'token invalid' });

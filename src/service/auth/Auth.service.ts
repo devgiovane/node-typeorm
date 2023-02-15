@@ -29,9 +29,9 @@ export class AuthService {
 		if (!passwordValid) {
 			throw new AppError('email or password incorrect', StatusError.UNAUTHORIZED);
 		}
-		return sign({}, "e3bce3fa76da81e068ac242d2acac391", {
-			subject: user.id,
-			expiresIn: "1d"
+		return sign({}, process.env.TOKEN_SALT, {
+			expiresIn: process.env.TOKEN_EXPIRE,
+			subject: user.id
 		});
 	}
 

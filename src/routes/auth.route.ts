@@ -5,6 +5,6 @@ import { AuthController } from "~@Controller/auth/Auth.controller";
 export const authRoutes = Router();
 
 const authController = new AuthController();
-authRoutes.post('/token', async (request: Request, response: Response) => {
+authRoutes.post('/token', async function (request: Request, response: Response) {
 	return await authController.handle(request, response);
 });

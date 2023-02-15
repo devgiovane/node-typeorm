@@ -8,11 +8,11 @@ export const categoryRoutes = Router();
 categoryRoutes.use(auth);
 
 const listCategoryController = new ListCategoryController();
-categoryRoutes.get('/', async (request: Request, response: Response) => {
+categoryRoutes.get('/', async function (request: Request, response: Response) {
 	return await listCategoryController.handle(request, response);
 });
 
 const createCategoryController = new CreateCategoryController();
-categoryRoutes.post('/', async (request: Request, response: Response) => {
+categoryRoutes.post('/', async function (request: Request, response: Response) {
 	return await createCategoryController.handle(request, response);
 });

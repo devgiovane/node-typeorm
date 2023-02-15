@@ -1,5 +1,5 @@
 import { singleton } from "tsyringe";
-import { DataSource, Repository} from "typeorm";
+import { DataSource, Repository } from "typeorm";
 
 import { Category } from "~@Entity/Category.entity";
 import { ICategoryRepository, ICreateCategoryDTO } from "../ICategory.repository";

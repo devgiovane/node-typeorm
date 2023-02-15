@@ -5,6 +5,11 @@
 		"emitDecoratorMetadata": true,
 		"module": "commonjs",
 		"baseUrl": ".",
+		"typeRoots": [
+			"./src/@types",
+			"./@types",
+			"./node_modules/@types"
+		],
 		"paths": {
 			"~@Controller/*": [ "src/controller/*" ],
 			"~@Database/*": [ "src/database/*" ],

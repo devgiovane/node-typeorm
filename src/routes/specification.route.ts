@@ -8,11 +8,11 @@ export const specificationRoutes = Router();
 specificationRoutes.use(auth);
 
 const listSpecificationController = new ListSpecificationController();
-specificationRoutes.get('/', async (request: Request, response: Response) => {
+specificationRoutes.get('/', async function (request: Request, response: Response) {
 	return await listSpecificationController.handle(request, response);
 });
 
 const createSpecificationService = new CreateSpecificationController();
-specificationRoutes.post('/', async (request: Request, response: Response) => {
+specificationRoutes.post('/', async function (request: Request, response: Response) {
 	return await createSpecificationService.handle(request, response);
 });
