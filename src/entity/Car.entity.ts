@@ -6,6 +6,7 @@ import { Specification } from "~@Entity/Specification.entity";
 
 @Entity("car")
 export class Car {
+
 	@PrimaryColumn("uuid")
 	public id?: string;
 

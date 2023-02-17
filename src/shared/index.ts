@@ -19,21 +19,17 @@ const userRepository = new UserRepository(datasource);
 const carRepository = new CarRepository(datasource);
 
 container.registerInstance<ICategoryRepository>(
-	"CategoryRepository",
-	categoryRepository
+	"CategoryRepository", categoryRepository
 );
 
 container.registerInstance<ISpecificationRepository>(
-	"SpecificationRepository",
-	specificationRepository
+	"SpecificationRepository", specificationRepository
 );
 
 container.registerInstance<IUserRepository>(
-	"UserRepository",
-	userRepository
+	"UserRepository", userRepository
 );
 
 container.registerInstance<ICarRepository>(
-	"CarRepository",
-	carRepository
+	"CarRepository", carRepository
 );

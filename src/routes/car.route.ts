@@ -20,6 +20,6 @@ carRoutes.get('/', async function (request: Request, response: Response) {
 });
 
 const createCarSpecificationController = new CreateCarSpecificationController();
-carRoutes.post('/:car_id/specification', async function (request: Request, response: Response) {
+carRoutes.post('/:car_id/specification', admin, async function (request: Request, response: Response) {
 	return await createCarSpecificationController.handle(request, response);
 });

@@ -3,6 +3,7 @@ import { Column, CreateDateColumn, Entity, PrimaryColumn } from "typeorm";
 
 @Entity("category")
 export class Category {
+
 	@PrimaryColumn("uuid")
 	public id?: string;
 
