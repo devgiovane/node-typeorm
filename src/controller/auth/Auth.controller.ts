@@ -4,8 +4,9 @@ import { Request, Response } from "express";
 import { AppError } from "~@Error/App.error";
 import { StatusError } from "~@Error/Status.error";
 import { AuthService } from "~@Service/auth/Auth.service";
+import { IController } from "~@Controller/IController";
 
-export class AuthController {
+export class AuthController implements IController {
 
 	public async handle(request: Request, response: Response) {
 		const { email, password } = request.body;

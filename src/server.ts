@@ -4,7 +4,7 @@ import morgan from 'morgan';
 import * as dotenv from 'dotenv';
 import express, { Request, Response } from 'express';
 
-import "~@Shared/index";
+import "~@Shared/container";
 
 import { Database } from '~@Database/index';
 import { apiRoutes } from "~@Routes/api.route";

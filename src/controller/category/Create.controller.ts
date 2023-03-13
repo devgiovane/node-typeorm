@@ -4,8 +4,9 @@ import { Request, Response } from "express";
 import { AppError } from "~@Error/App.error";
 import { StatusError } from "~@Error/Status.error";
 import { CreateCategoryService } from "~@Service/category/Create.service";
+import { IController } from "~@Controller/IController";
 
-export class CreateCategoryController {
+export class CreateCategoryController implements IController {
 
 	public async handle(request: Request, response: Response): Promise<Response> {
 		const { name, description } = request.body;

@@ -3,18 +3,17 @@ import { Request, Response } from "express";
 
 import { AppError } from "~@Error/App.error";
 import { StatusError } from "~@Error/Status.error";
-import { CreateCarService } from "~@Service/car/Create.service";
 import { IController } from "~@Controller/IController";
+import { CreateRentalService } from "~@Service/rental/Create.service";
 
-export class CreateCarController implements IController {
+export class CreateRentalController implements IController {
 
 	public async handle(request: Request, response: Response): Promise<Response> {
-		const { name, description, license_plate, brand, fine_amount, daily_rate, category_id } = request.body;
+		const { car_id, expected_return_date } = request.body;
+		const { id: user_id } = request.user;
 		try {
-			const createCarService = container.resolve(CreateCarService);
-			await createCarService.execute({
-				name, description, license_plate, brand, fine_amount, daily_rate, category_id
-			});
+			const createRentalService = container.resolve(CreateRentalService);
+			await createRentalService.execute({ user_id, car_id, expected_return_date });
 			return response.status(StatusError.CREATED).send();
 		} catch (error) {
 			if (error instanceof AppError) {

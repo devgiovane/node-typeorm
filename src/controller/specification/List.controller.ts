@@ -4,8 +4,9 @@ import { Request, Response } from "express";
 import { AppError } from "~@Error/App.error";
 import { StatusError } from "~@Error/Status.error";
 import { ListSpecificationService } from "~@Service/specification/List.service";
+import { IController } from "~@Controller/IController";
 
-export class ListSpecificationController {
+export class ListSpecificationController implements IController {
 
 	public async handle(request: Request, response: Response): Promise<Response> {
 		try {

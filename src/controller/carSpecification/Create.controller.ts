@@ -4,8 +4,9 @@ import { Request, Response } from "express";
 import { AppError } from "~@Error/App.error";
 import { StatusError } from "~@Error/Status.error";
 import { CreateCarSpecificationService } from "~@Service/carSpecification/Create.service";
+import { IController } from "~@Controller/IController";
 
-export class CreateCarSpecificationController {
+export class CreateCarSpecificationController implements IController {
 
 	public async handle(request: Request, response: Response): Promise<Response> {
 		const { car_id } = request.params;
