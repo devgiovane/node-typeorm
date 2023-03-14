@@ -8,13 +8,13 @@ export class Database {
 	constructor() {
 		this.appDataSource = new DataSource({
 			type: "postgres",
-			host: "database",
+			host: process.env.NODE_ENV === "test" ? "localhost" : "database",
 			port: 5432,
 			username: "docker",
 			password: "58516ccd",
-			database: "rentx",
-			synchronize: true,
-			logging: true,
+			database: process.env.NODE_ENV === "test" ? "rentx_test" : "rentx",
+			synchronize: process.env.NODE_ENV !== "test",
+			logging: process.env.NODE_ENV !== "test",
 			entities: [
 				"src/entity/**/*.entity.ts"
 			],
@@ -31,15 +31,8 @@ export class Database {
 		return Database._instance;
 	}
 
-	public init(): void {
-		this.appDataSource.initialize()
-			.then(() => {
-				console.log("[database] has been initialized");
-			})
-			.catch(error => {
-				console.error("[database] ", error);
-				throw error;
-			});
+	public async init(): Promise<void> {
+		await this.appDataSource.initialize();
 	}
 
 	public getDataSource(): DataSource {
